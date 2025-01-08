@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baddie, will you go on a date with me?</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #800020; /* Burgundy background */
+            color: #d0f0ff; /* Ice-blue text */
+            overflow: hidden;
+        }
+
+        /* Box Styling for Each Text Block */
+        .box {
+            background-color: #000000; /* Black box */
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 80%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .box h1 {
+            color: #d0f0ff; /* Ice-blue text */
+        }
+
+        /* Floating Emojis and Flowers for Page 1 and 2 only */
+        .emoji {
+            position: absolute;
+            animation: float 5s infinite ease-in-out;
+            font-size: 2rem;
+        }
+
+        /* Positioning for emojis and flowers */
+        .emoji:nth-child(1) { top: 5%; left: 10%; }
+.emoji:nth-child(2) { top: 15%; left: 80%; animation-delay: 0s; }
+.emoji:nth-child(3) { top: 77%; left: 9%; animation-delay: 0s; }
+.emoji:nth-child(4) { top: 87%; left: 82%; animation-delay: 0s; }
+.emoji:nth-child(5) { top: 90%; left: 50%; animation-delay: 0s; }
+.emoji:nth-child(6) { top: 62%; left: 55%; animation-delay: 0s; }
+.emoji:nth-child(7) { top: 79%; left: 60%; animation-delay: 0s; }
+.emoji:nth-child(8) { top: 65%; left: 85%; animation-delay: 0s; }
+.emoji:nth-child(9) { top: 93%; left: 15%; animation-delay: 0s; }
+.emoji:nth-child(10) { top: 72%; left: 35%; animation-delay: 0s; }
+.emoji:nth-child(11) { top: 63%; left: 20%; animation-delay: 0s; }
+.emoji{
+    position: absolute;
+    animation: float 3s infinite ease-in-out;
+    font-size: 2rem;
+        
+}
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        button {
+            background-color: #000000; /* Black button */
+            color: #d0f0ff; /* Ice-blue text */
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #333333; /* Darker black on hover */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Emojis and Flowers (Only for Page 1 and 2) -->
+    <div id="emojiContainer" class="emoji-container">
+        <div class="emoji">🌸</div>
+        <div class="emoji">💋</div>
+        
+        
+       
+        <div class="emoji">🫐</div>
+        
+        <div class="emoji">🍷</div>
+       
+        <div class="emoji">🎸</div>
+       
+        <div class="emoji">🚬</div>
+       
+        <div class="emoji">🪩</div>
+        
+        <div class="emoji">💌</div>
+        <div class="emoji">🎀</div>
+        <div class="emoji">✨</div>
+        
+        <div class="emoji">🧑🏻‍🦱</div>
+    </div>
+
+    <!-- First Page -->
+    <div id="page1">
+        <div class="box">
+            <h1>Baddie, will you go on a date with me?</h1>
+        </div>
+        <div class="box">
+            <button onclick="goToNextPage('page2')">Ofc DUH 💅🏻</button>
+        </div>
+        <div class="box">
+            <button onclick="goToNextPage('page2')">How can I ever say no to you?! I must be crazy to do that</button>
+        </div>
+    </div>
+
+    <!-- Second Page -->
+    <div id="page2" class="hidden">
+        <div class="box">
+            <h1>Expected, you can't say no to me</h1>
+            <p>Below is the bare min you're agreeing to</p>
+        </div>
+        <div class="box">
+            <button onclick="goToNextPage('page3')">I will do everything, your existence is enough and maybe bring drinks so I won't nag like kids</button>
+        </div>
+    </div>
+
+    <!-- Third Page (No Emojis) -->
+    <div id="page3" class="hidden">
+        <div class="box">
+            <h1>Yayyyyyy!!</h1>
+        </div>
+        <div class="box">
+            <button onclick="startConfetti()">Yayyyy Again</button>
+        </div>
+    </div>
+
+    <!-- Confetti Script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        function goToNextPage(pageId) {
+            // Hide all page divs
+            document.querySelectorAll('div[id^="page"]').forEach(div => div.classList.add('hidden'));
+
+            // Show the selected page
+            document.getElementById(pageId).classList.remove('hidden');
+
+            // Start confetti if on the third page
+            if (pageId === 'page3') {
+                startConfetti();
+            }
+
+            // Hide the emojis container on Page 3
+            if (pageId === 'page3') {
+                document.getElementById('emojiContainer').style.display = 'none';
+            } else {
+                document.getElementById('emojiContainer').style.display = 'block';
+            }
+        }
+
+        // Confetti effect
+        function startConfetti() {
+            var duration = 10 * 1000; // 10 seconds
+            var animationEnd = Date.now() + duration;
+            var interval = setInterval(function() {
+                confetti({
+                    particleCount: 20,
+                    angle: Math.random() * 360,
+                    spread: 100,
+                    origin: { x: Math.random(), y: Math.random() - 0.2 }
+                });
+                if (Date.now() > animationEnd) {
+                    clearInterval(interval);
+                }
+            }, 100);
+        }
+
+        // Initial page load - show the first page
+        window.onload = function() {
+            goToNextPage('page1');
+        };
+    </script>
